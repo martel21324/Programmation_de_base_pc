@@ -1,0 +1,220 @@
+//AvecLeDebogueur();
+//TableDeMultiplication();
+
+//MeilleurEtudiant();
+
+//Menu();
+
+//Factorielle();
+
+EnDecroissance();
+//NombreMagique();
+
+// LES DÉFIS:
+//Triangle();
+//Rectangle();
+//Exposant();
+
+
+static void AvecLeDebogueur()
+{
+    int question = 133;
+    for (int i = 10; i > 0; i--)
+    {
+        if (i % 2 == 0)
+        {
+            question *= i;
+        }
+        else if (i % 3 == 0)
+        {
+            question /= i;
+        }
+        else if (i % 7 == 0)
+        {
+            question += i;
+        }
+        else if (i % 5 == 0)
+        {
+            question -= i;
+        }
+
+        Console.WriteLine($"i = {i} / question = {question}");
+        Console.WriteLine("===================================");
+    }
+}
+
+
+static void TableDeMultiplication()
+{
+    //Demander d'entrer le facteur de base.
+    Console.Write("Bienvenue dans la tbale de multiplication, veillez entrer le facteur de base.");
+
+    //Lire et stocker le facteur de base
+    int factBase = Convert.ToInt32(Console.ReadLine());
+
+    //Demander le nombre multiplicateur
+    Console.Write("Veillez entrer le nombre multiplicateur:");
+
+    //Lire et stocker le nombre multiplicateur
+    int nbAMulti = Convert.ToInt32(Console.ReadLine());
+    int nombreMulti = 0;
+
+    //Boucle, calcul et affichage du nombre multiplicateur
+    for (int i = 0; i < nbAMulti; i++)
+    {
+        nombreMulti = nombreMulti + 1;
+        int resultat = factBase * nombreMulti;
+        Console.WriteLine($"{factBase} X {nombreMulti} = {resultat}");
+    }
+
+    Console.WriteLine("Fin du programme!");
+}
+
+
+static void MeilleurEtudiant()
+{
+    //Etablir les variables
+    int meilleurNote = 0;
+    string meilleeurEtudiant = "ZZZ";
+
+    //Demander la note de l'etudiant
+    Console.WriteLine("Veillez entrer une note. -1 pour arrêter.");
+
+    //Lire et stocker la note
+    int note = Convert.ToInt32(Console.ReadLine());
+
+    while (note >= 0)
+
+    {
+        Console.WriteLine("Quel est le nom de l'étudiant: ");
+        string nom = Console.ReadLine();
+
+
+        if (note > meilleurNote)
+        {
+            meilleurNote = note;
+            meilleeurEtudiant = nom;
+        }
+
+        //Demander la note de l'etudiant
+        Console.WriteLine("Veillez entrer une note. -1 pour arrêter.");
+
+        //Lire et stocker la note
+        note = Convert.ToInt32(Console.ReadLine());
+    }
+
+    if (meilleeurEtudiant != "ZZZ")
+    {
+        Console.WriteLine($"{meilleeurEtudiant} a eu la meilleure note avec {meilleurNote}%!");
+    }
+    else
+    {
+        Console.WriteLine("Aucune note n'a été entrer.");
+    }
+
+    Console.WriteLine("Fin du programme!");
+}
+
+
+static void Menu()
+{
+    char choix;
+    do
+    {
+        Console.WriteLine("1. Ajouter une note");
+        Console.WriteLine("2. Modifier une note");
+        Console.WriteLine("3. Supprimer une note");
+        Console.WriteLine("4. Quitter");
+        Console.Write("Faites votre choix: ");
+
+        choix = Convert.ToChar(Console.ReadLine());
+
+        switch (choix)
+        {
+            case '1':
+                Console.WriteLine("Nous avons ajouté une note...");
+                break;
+            case '2':
+                Console.WriteLine("Nous avons modifié une note...");
+                break;
+            case '3':
+                Console.WriteLine("Nous avons supprimé une note...");
+                break;
+            case '4':
+                Console.WriteLine("Au revoir!");
+                break;
+            default:
+                Console.WriteLine("Le choix n'est pas valide...");
+                break;
+        }
+
+        Console.WriteLine("================================================");
+    } while (choix != '4');
+}
+
+static void Factorielle()
+{
+    Console.WriteLine("Entrer un nombre afin de calculer son factorielle: ");
+    int fact = Convert.ToInt32(Console.ReadLine());
+    int resultat;
+    if (fact >= 0)
+    {
+        resultat = fact;
+        for (int i = 1; i < fact; i++)
+        {
+            resultat = resultat * i;
+        }
+
+        Console.WriteLine($"Le factorielle de {fact} est {resultat}.");
+    }
+    else
+    {
+        Console.WriteLine("Entrer un autre nombre!");
+    }
+}
+
+static void EnDecroissance()
+{
+    Console.WriteLine("Appuyer sur une touche pour lancer le programme...");
+    Console.ReadLine();
+
+    for (int i = 20; i > 0; i--)
+    {
+        for (int j = i; j > 0; j--)
+        {
+            Console.Write(i);
+        }
+
+        Console.WriteLine();
+    }
+}
+
+
+static void NombreMagique()
+{
+    //Variable
+    int nbMagique = new Random().Next(1, 101);
+    int essai;
+
+    do
+    {
+    } while (essai != nbMagique);
+}
+
+///////////////////////////////////////////////////////////////
+// Les défis
+///////////////////////////////////////////////////////////////
+
+static void Triangle()
+{
+}
+
+
+static void Rectangle()
+{
+}
+
+
+static void Exposant()
+{
+}
