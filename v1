@@ -7,12 +7,16 @@
 
 //Factorielle();
 
-EnDecroissance();
+//EnDecroissance();
+
 //NombreMagique();
 
-// LES DÉFIS:
+//LES DÉFIS:
+
 //Triangle();
-//Rectangle();
+
+Rectangle();
+
 //Exposant();
 
 
@@ -195,10 +199,42 @@ static void NombreMagique()
     //Variable
     int nbMagique = new Random().Next(1, 101);
     int essai;
+    int tentative = 0;
+
+    //L'expliquation avant d'entrer dans la boucle
+    Console.WriteLine(
+        "Bonjour et bienvenue dans le jeux du nombre magique.Vous devez deviner le nombre magique de 1 à 100. À chaque tentative vous aurez un indice à s'avoir si le nombre magique se trouve au dessu ou en dessous du nombre entré.");
+    Console.WriteLine("Êtes-vous prêt? ");
+    Console.WriteLine("Je pense à une nombre!");
+    Console.WriteLine(".");
+    Console.WriteLine("..");
+    Console.WriteLine("...");
+    Console.WriteLine("....");
+    Console.WriteLine("OK! Je suis prêt!");
 
     do
     {
+        Console.WriteLine("Essaie un nombre:");
+        essai = Convert.ToInt32(Console.ReadLine());
+        if (essai > nbMagique)
+        {
+            Console.WriteLine("Le nombre magique est plus bas!");
+        }
+        else if (essai < nbMagique)
+        {
+            Console.WriteLine("Le nombre magique est plus haut!");
+        }
+        else if (essai == nbMagique)
+
+        {
+            Console.WriteLine(
+                $"Félicitation vous avez trouvé le nombre magique! Le nombre magique était bien {nbMagique} cela vous a pris {tentative} tentatives");
+        }
+
+        tentative++;
     } while (essai != nbMagique);
+
+    Console.WriteLine("Fin du programme!");
 }
 
 ///////////////////////////////////////////////////////////////
@@ -207,14 +243,138 @@ static void NombreMagique()
 
 static void Triangle()
 {
+    //Demande à la console
+    Console.WriteLine("Faison un triangle! Entre la hauteur désiré:");
+
+    //Lire le nombre d'étage
+    int nombreEtage = Convert.ToInt32(Console.ReadLine());
+    //Initialisation du nombre d'étoile comme valeur temporaire après les espaces
+    int nombreEtoile = 1;
+    //Lien entre le nombre d'espace et le nombre d'étage
+    int nombreEspace = nombreEtage - 1;
+
+    //Première boucle for pour le nombre d'étage
+    for (int i = nombreEtage; i > 0; i--)
+    {
+        //Deuxième boucle for pour le nombre d'espace
+        for (int j = nombreEspace; j > 0; j--)
+        {
+            Console.Write(" ");
+        }
+
+        //Troisième boucle for après la première pour le nombre d'étoiles
+        for (int k = nombreEtoile; k > 0; k--)
+        {
+            Console.Write("*");
+        }
+
+        //Ajustement des valeur d'espace et d'étoile pour la prochaine ligne
+        nombreEspace--;
+        nombreEtoile = nombreEtoile + 2;
+
+        //Retoure à la ligne
+        Console.WriteLine();
+    }
 }
 
 
 static void Rectangle()
 {
+    Console.WriteLine("Faison un rectagle!");
+    Console.Write("Quelle est la largueur du rectangle?: ");
+
+    int largeur = Convert.ToInt32(Console.ReadLine());
+
+    Console.Write("Quelle est la hauteur du rectangle?: ");
+
+    int hauteur = Convert.ToInt32(Console.ReadLine());
+
+    for (int i = 0; i < largeur; i++) Console.Write("* ");
+
+    Console.WriteLine();
+
+    for (int i = 2; i < hauteur; i++)
+    {
+        Console.Write("* ");
+        for (int j = 2; j < largeur; j++)
+        {
+            Console.Write("  ");
+        }
+
+        Console.Write("* ");
+        Console.WriteLine();
+    }
+
+    for (int i = 0; i < largeur; i++)
+    {
+        Console.Write("* ");
+    }
+    Console.WriteLine();
+    Console.WriteLine($"Voici un rectangle de hauteru de {hauteur} et de largeur de {largeur}");
 }
 
 
 static void Exposant()
 {
+    Console.Write("Calculatrice d'exposant, entrer votre nombre: ");
+    double nombreExpose = Convert.ToDouble(Console.ReadLine());
+    
+    Console.Write("Entrer l'exposant: ");
+    double exposant = Convert.ToDouble(Console.ReadLine());
+
+    double resultat = 0;
+    double expPositif;
+
+
+    //Exposee en 0
+    if (exposant == 0)
+    {
+        resultat = 1;
+    }
+    
+
+    //Tout positif!
+    else
+    {
+        resultat = nombreExpose;
+
+        //conversion en positif le cas echeant
+        if (exposant < 0)
+        {
+            expPositif = exposant * -1;
+        }
+        
+        else
+        {
+            expPositif = exposant;
+        }
+
+
+        if (nombreExpose < 0)
+        {
+            resultat = resultat * -1;
+        }
+
+        //Le calcul en positif
+        for (int i = 1; i < expPositif; i++)
+        {
+            resultat = resultat * nombreExpose;
+        }
+
+
+        //Exposant negatif, inversion du resultat
+        if (exposant < 0)
+        {
+            resultat = 1 / resultat;
+        }
+
+        //Nombre exposee Negatif, ne dois pas être appliqué si l'exposant est négatif, nombre changé en négatif
+        else if (nombreExpose < 0)
+        {
+            resultat = resultat * -1;
+        }
+    }
+
+
+    Console.WriteLine($"Le resultat est {resultat}");
 }
