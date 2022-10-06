@@ -1,0 +1,282 @@
+//CombienDeFois();
+//LePlusGrand();
+//Fusion();
+//PremiereOccurrence();
+//Denombrement();
+
+TriParSelection();
+//TriParInsertion();
+//TriBulles();
+
+
+static void CombienDeFois()
+{
+    //Creation du tableau
+    int[] nombreStocker = new int[10];
+
+    //Initialisation du compteur
+    int compteur = 0;
+    string stop = "run";
+    do
+    {
+        //Demande d'entrer les nombres à stocker
+        Console.WriteLine("Entrer les nombre a stocker: ");
+
+        //Boucle pour entrer les nombre dans le tableau sans prendre trop de place
+        for (int i = 0; i < nombreStocker.Length; i++)
+        {
+            nombreStocker[i] = Convert.ToInt32(Console.ReadLine());
+        }
+
+        //Demander le nombre a comparer
+        Console.WriteLine("Maintenant tenton de retrouver le ou les nombres stocker, entrer un nombre: ");
+        int nombreComparer = Convert.ToInt32(Console.ReadLine());
+
+        //Boucle pour comparer les nombres ensembles
+        for (int i = 0; i < nombreStocker.Length; i++)
+        {
+            if (nombreStocker[i] == nombreComparer)
+            {
+                compteur++;
+            }
+        }
+
+        Console.WriteLine($"{nombreComparer} se trouve {compteur} fois dans le tableau.");
+
+        Console.WriteLine("Dans la boucle...\nTape enter pour reprendre ou exit pour sortir: ");
+        stop = Console.ReadLine();
+    } while (stop != "exit");
+}
+
+static void LePlusGrand()
+{
+    int[] nombreStocker = new int[10];
+    string stop = "run";
+    int lePlusGrand = 0;
+    int possitionPlusGrand = -1;
+
+    do
+    {
+        Console.WriteLine("Veillez entrer 10 nombre: ");
+        for (int i = 0; i < nombreStocker.Length; i++)
+        {
+            nombreStocker[i] = Convert.ToInt32(Console.ReadLine());
+            if (nombreStocker[i] > lePlusGrand)
+            {
+                lePlusGrand = nombreStocker[i];
+                possitionPlusGrand = i;
+            }
+        }
+
+        Console.WriteLine($"Le plus grand nombre est {lePlusGrand} en position {possitionPlusGrand}.");
+        Console.WriteLine("Entrer ENTER pour recommencer ou EXIT pour sortir.");
+        stop = Console.ReadLine();
+        if (stop != "exit" || stop != "EXIT")
+        {
+            Console.WriteLine("=================================================");
+        }
+    } while (stop != "exit" && stop != "EXIT");
+}
+
+static void Fusion()
+{
+    int[] tableau1 = new int[10];
+    int[] tableau2 = new int[10];
+    int[] tableau3 = new int[20];
+
+    Console.WriteLine("Veillez remplir les deux premiers tableaux:");
+
+    Console.WriteLine("===Tableau #1===");
+
+    for (int i = 0; i < tableau1.Length; i++)
+    {
+        int nbMagique = new Random().Next(1, 101);
+        Console.Write($"({i + 1}/10) Entrer un entier: ");
+        tableau1[i] = /*nbMagique;*/ Convert.ToInt32(Console.ReadLine());
+        //Console.WriteLine();
+    }
+
+    Console.WriteLine("===Tableau #2===");
+
+    for (int i = 0; i < tableau2.Length; i++)
+    {
+        int nbMagique = new Random().Next(1, 101);
+        Console.Write($"({i + 1}/10) Entrer un nombre: ");
+
+        tableau2[i] = /*nbMagique;*/ Convert.ToInt32(Console.ReadLine());
+        //Console.WriteLine();
+    }
+
+
+    for (int i = 0; i < tableau1.Length; i++)
+    {
+        tableau3[i] = tableau1[i];
+    }
+
+    for (int i = 0; i < tableau2.Length; i++)
+    {
+        tableau3[i + 9] = tableau2[i];
+    }
+
+    Console.WriteLine("===============FUSION=====================");
+    for (int i = 0; i < tableau3.Length; i++)
+    {
+        Console.Write($"{tableau3[i]}, ");
+    }
+}
+
+static void PremiereOccurrence()
+{
+    string chaineDeCaractere;
+    Console.Write("Entrez une chaine de caractere: ");
+    chaineDeCaractere = Console.ReadLine();
+
+    Console.Write("Entrez un caractere a chercher: ");
+    char charactereAChercher = Convert.ToChar(Console.ReadLine());
+
+
+    for (int i = 0; i < chaineDeCaractere.Length; i++)
+    {
+        if (chaineDeCaractere[i] == charactereAChercher)
+        {
+            Console.WriteLine($"La premiere occurence {charactereAChercher} est a l'index {i}.");
+            return;
+        }
+
+        Console.WriteLine("Sortie");
+    }
+}
+
+static void Denombrement()
+{
+    int[] chiffre = new int[20];
+    int compteur = 0;
+
+
+    for (int i = 0; i < chiffre.Length; i++)
+    {
+        Console.Write($" {i + 1}/20 Entrez un chiffre (entre 0 et 9): ");
+        chiffre[i] = Convert.ToInt32(Console.ReadLine());
+
+        if (chiffre[i] < 0 || chiffre[i] > 9)
+        {
+            Console.WriteLine($" Erreur: le chiffre {chiffre[i]} n'est pas entre 0 et 9.");
+            i--;
+        }
+    }
+
+    for (int i = 0; i < 10; i++)
+    {
+        for (int j = 0; j < chiffre.Length; j++)
+        {
+            if (i == chiffre[j])
+            {
+                compteur++;
+            }
+        }
+
+        Console.WriteLine($"{i} --> {compteur}");
+        compteur = 0;
+    }
+}
+
+static void TriParSelection()
+{
+    //int[] tableau = {};
+    //int[] tableau = {1};
+    //int[] tableau = {2, 1};
+    //int[] tableau = { 1, 2, 3, 4, 5 };
+    int[] tableau = { 5, 4, 3, 2, 1 };
+    //int[] tableau = { 5, 2, 1, 1, -4, 10, 0 };
+
+    Console.WriteLine("Avant le tri par sélection : " + TableuToString(tableau));
+
+    // Le code du tri par sélection ici...
+    for (int i = 0; i < tableau.Length; i++)
+    {
+        //Passe chaque chiffre du tableau l'un derriere l'autre pour comparer
+        int min = i;
+        for (int j = tableau.Length - 1; j > i; j--)
+        {
+            if (tableau[j] < tableau[min])
+            {
+                min = j;
+            }
+        }
+
+        if (tableau[i] != min)
+        {
+            (tableau[i], tableau[min]) = (tableau[min], tableau[i]);
+        }
+    }
+
+    Console.WriteLine("Après le tri par sélection : " + TableuToString(tableau));
+}
+
+static string TableuToString(int[] tableau)
+{
+    if (tableau.Length == 0) return "[]";
+
+    string s = "[";
+    int i;
+    for (i = 0; i < tableau.Length - 1; i++) s += $"{tableau[i]}, ";
+    return s += $"{tableau[i]}]";
+}
+
+//////////////////////////////////////////////////////////////////////////////
+// Défis
+//////////////////////////////////////////////////////////////////////////////
+static void TriParInsertion()
+{
+    //int[] tableau = {};
+    //int[] tableau = {1};
+    //int[] tableau = {2, 1};
+    //int[] tableau = { 1, 2, 3, 4, 5 };
+    int[] tableau = { 5, 4, 3, 2, 1 };
+    //int[] tableau = { 5, 2, 1, 1, -4, 10, 0 };
+
+    Console.WriteLine("Avant le tri par insertion : " + TableuToString(tableau));
+
+    // Le code du tri par insertion ici...
+    for (int i = 0; i < tableau.Length; i++)
+    {
+        int j = i;
+        int temp = tableau[i];
+
+        while (j > 0 && tableau[j - 1] > temp)
+        {
+            tableau[j] = tableau[j - 1];
+            tableau[j - 1] = temp;
+            j--;
+        }
+    }
+
+    Console.WriteLine("Après le tri par insertion : " + TableuToString(tableau));
+}
+
+
+static void TriBulles()
+{
+    //int[] tableau = {};
+    //int[] tableau = {1};
+    //int[] tableau = {2, 1};
+    //int[] tableau = { 1, 2, 3, 4, 5 };
+    int[] tableau = { 5, 4, 3, 2, 1 };
+    //int[] tableau = { 5, 2, 1, 1, -4, 10, 0 };
+
+    Console.WriteLine("Avant le tri à bulles : " + TableuToString(tableau));
+
+    // Le code du tri à bulles ici.
+    for (int i = tableau.Length; i > 0; i--)
+    {
+        for (int j = 0; j < i - 1; j++)
+        {
+            if (tableau[j + 1] < tableau[j])
+            {
+                (tableau[j + 1], tableau[j]) = (tableau[j], tableau[j + 1]);
+            }
+        }
+    }
+
+    Console.WriteLine("Après le tri à bulles : " + TableuToString(tableau));
+}
